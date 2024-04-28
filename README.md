@@ -23,6 +23,11 @@ index.html: HTML template for the web page.
 beep.mp3: Audio file for the beep sound.
 requirements.txt: List of required Python packages.
 
-Author:
+Author:<img width="319" alt="GaugeReaderImage" src="https://github.com/ISHAsolanki/GaugeReader/assets/113380022/f62a820d-12e5-455b-bb9b-f17a5358f425">
+
 [Isha Solanki]
 [Disha Bhanushali]
+
+
+
+
