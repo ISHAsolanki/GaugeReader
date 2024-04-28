@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gauge Reader</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+    <script>
+        // Function to fetch the current gauge reading from Flask server
+        function fetch_reading() {
+            $.get("/current_reading", function(data) {
+                $("#gauge_reading").text(data.reading + " psi");
+            });
+        }
+
+        // Fetch the reading every second
+        setInterval(fetch_reading, 1000);
+    </script>
+    <style>
+        /* Center all content on the page */
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;    /* Center vertically */
+            height: 100vh;           /* Full viewport height */
+            margin: 0;               /* Remove default margin */
+            padding: 0;              /* Remove default padding */
+            background-color: #f5f5f5; /* Background color for the whole page */
+        }
+
+        /* Styling for the content box */
+        .content-box {
+            padding: 20px;          /* Padding around the content */
+            border: 1px solid #ccc; /* Border for the box */
+            border-radius: 8px;     /* Rounded corners */
+            background-color: lightgray; /* Light gray background for the box */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            text-align: center;     /* Center text inside the box */
+            width: 80%;              /* Ensure the box doesn't get too wide */
+            max-width: 640px;       /* Limit the maximum width */
+        }
+    </style>
+</head>
+<body>
+    <!-- Centered content wrapped inside a light gray box -->
+    <div class="content-box">
+        <h1>Gauge Reader</h1>
+        <p>Live gauge reading from webcam:</p>
+        <img src="/video_feed" alt="Gauge Reader" width="640" height="480">
+
+        <!-- Text box to display the current gauge reading -->
+        <p>Current Reading: <span id="gauge_reading">N/A</span></p>
+
+        <h2>Set Threshold Limit</h2>
+        <form action="/set_threshold" method="post">
+            <label for="threshold">Threshold Limit:</label>
+            <input type="number" step="0.1" id="threshold" name="threshold" required>
+            <input type="submit" value="Set Threshold">
+        </form>
+    </div>
+</body>
+</html>
